@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsbhrhbobtwn3"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_t3ogw"]
+[ext_resource type="ArrayMesh" uid="uid://80j3rhcl75u8" path="res://frieren.obj" id="2_dik7u"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xh265"]
+points = PackedVector3Array(0.374446, 3.06646, -0.845845, -0.400253, 2.83657, 1.43033, -0.55564, 2.88005, 1.52171, -0.507293, 0.897054, -0.509861, -1.0393, 3.17039, -0.945772, 0.460224, 0.945546, 0.553812, -1.18059, 2.01728, 0.982919, 0.521838, 3.40274, 0.297954, -1.04365, 2.01718, -1.2636, 0.460224, 0.945546, -0.558494, -0.990954, 3.36375, 0.892456, -0.55564, 2.83186, -1.52639, 0.0611412, 3.59631, -0.397643, 0.650714, 3.06916, 0.477784, -0.507293, 0.897054, 0.505178, -1.23288, 2.1548, -0.945772, -1.04448, 2.01703, 1.26023, 0.654887, 3.1195, -0.4388, -0.828579, 3.42372, -0.965702, -0.652333, 0.897054, -0.171514, 0.101871, 0.691716, 0.294586, 0.0615379, 3.59821, 0.39348, 0.330753, 2.88631, 0.93566, 0.556379, 1.03398, 0.148414, 0.0732561, 0.945546, 0.699116, 0.0732561, 0.945546, -0.703798, -0.218223, 3.63711, 0.0668085, 0.288865, 3.39909, 0.666161, 0.288242, 3.39763, -0.670057, -0.819411, 3.40391, 0.992502, -1.13599, 2.68639, 0.94109, 0.328768, 2.88377, -0.937087)
+
+[sub_resource type="Animation" id="Animation_8yn5y"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hpgjc"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, 0, 0, -4.58577, 0.966667, 1, 0, 2.90446, -4.58577)
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"test"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qgvbm"]
+_data = {
+"RESET": SubResource("Animation_8yn5y"),
+"new_animation": SubResource("Animation_hpgjc")
+}
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_t3ogw")
+
+[node name="Frieren" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -1.07281, 0)
+mesh = ExtResource("2_dik7u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -1.07281, 0)
+shape = SubResource("ConvexPolygonShape3D_xh265")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.970439, 0.241346, 0, -0.241346, 0.970439, 0, 1.89736, 2.48804)
+
+[node name="RayCast3D" type="RayCast3D" parent="Node3D/Camera3D"]
+target_position = Vector3(0, 0, -8)
+
+[node name="GrabPosition" type="Node3D" parent="Node3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.970439, -0.241346, 0, 0.241346, 0.970439, 0, 0.00613379, -5.27105)
+
+[node name="Mouth" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0901655, -0.281531)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qgvbm")
+}
+autoplay = "new_animation"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45224, -4.58577)
+
+[node name="InventorySlot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.788, 2.283, -0.276)
+
+[node name="InventorySlot2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17903, 2.283, -0.276)

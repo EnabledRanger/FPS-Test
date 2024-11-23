@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://brtga4bvxrpxj"]
+
+[ext_resource type="PackedScene" uid="uid://dsbhrhbobtwn3" path="res://player.tscn" id="1_a72q5"]
+[ext_resource type="PackedScene" uid="uid://dglyqjp26as77" path="res://trampoline.tscn" id="2_0d3u3"]
+[ext_resource type="PackedScene" uid="uid://ye4kjw2oekx6" path="res://pick_upable.tscn" id="3_ditl4"]
+[ext_resource type="PackedScene" uid="uid://bdjnvfaa1ijjr" path="res://pick_upable2.tscn" id="4_7t8ty"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_a72q5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79958, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6699, 9.53674e-07, 5.88424)
+use_collision = true
+size = Vector3(20.2285, 1, 16.8408)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.669131, 0.743145, 0, -0.743145, 0.669131, 0, 4.04504, 3.07421)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.103747, -0.994604, 0, 0.994604, -0.103747, -0.531706, 2.06167, -5.01282)
+use_collision = true
+size = Vector3(5, 5.56787, 5)
+
+[node name="trampoline" parent="." instance=ExtResource("2_0d3u3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90302, 0.637221, 0.0476786)
+
+[node name="PickUpable" parent="." instance=ExtResource("3_ditl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163323, 1.63291, 4.09481)
+
+[node name="PickUpable2" parent="." instance=ExtResource("4_7t8ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51585, 2.6354, 2.86589)
+
+[node name="PickUpable3" parent="." instance=ExtResource("3_ditl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0643818, 3.39576, 4.41186)

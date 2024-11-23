@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ye4kjw2oekx6"]
+
+[ext_resource type="Script" path="res://pick_upable.gd" id="1_871bh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_64vvx"]
+
+[node name="PickUpable" type="RigidBody3D"]
+script = ExtResource("1_871bh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_64vvx")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D"]

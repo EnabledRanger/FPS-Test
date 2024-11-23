@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://80j3rhcl75u8"
+path="res://.godot/imported/frieren.obj-dea735dfb83ac3cb746db0cc3612ee5f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/frieren.obj-dea735dfb83ac3cb746db0cc3612ee5f.mesh"]
+
+source_file="res://frieren.obj"
+dest_files=["res://.godot/imported/frieren.obj-dea735dfb83ac3cb746db0cc3612ee5f.mesh", "res://.godot/imported/frieren.obj-dea735dfb83ac3cb746db0cc3612ee5f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

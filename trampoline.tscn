@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://dglyqjp26as77"]
+
+[ext_resource type="Script" path="res://trampoline.gd" id="1_p0vch"]
+[ext_resource type="Shader" uid="uid://bveobsvde1ot6" path="res://trampoline.tres" id="2_o0sgc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wmt6s"]
+height = 0.0990245
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kw4yu"]
+noise_type = 3
+frequency = 0.0017
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kj2ex"]
+noise = SubResource("FastNoiseLite_kw4yu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bu12h"]
+frequency = 0.0009
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q4e8q"]
+noise = SubResource("FastNoiseLite_bu12h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5sih"]
+albedo_color = Color(0.231373, 0.670588, 0.858824, 1)
+albedo_texture_force_srgb = true
+metallic = 1.0
+roughness = 0.0
+emission = Color(0.243137, 1, 1, 1)
+normal_texture = SubResource("NoiseTexture2D_q4e8q")
+rim = 0.56
+heightmap_scale = 7.11
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = SubResource("NoiseTexture2D_kj2ex")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tgga8"]
+material = SubResource("StandardMaterial3D_o5sih")
+height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_epkcg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhvko"]
+render_priority = 0
+shader = ExtResource("2_o0sgc")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4ixfq"]
+height = 0.27444
+radius = 0.38869
+
+[node name="trampoline" type="StaticBody3D"]
+script = ExtResource("1_p0vch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_wmt6s")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CylinderMesh_tgga8")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40483, 0, 0)
+mesh = SubResource("BoxMesh_epkcg")
+material = SubResource("ShaderMaterial_rhvko")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_4ixfq")
